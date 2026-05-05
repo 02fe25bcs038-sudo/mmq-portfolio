@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammad Mazhar Qureshi | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#08081a;--bg-1:#0d0f2c;--card:#13163a;--card-2:#1a1d4a;
+  --c-violet:#8b5cf6;--c-cyan:#22d3ee;--c-magenta:#ec4899;--c-amber:#fbbf24;--c-emerald:#34d399;
+  --text:#f1f5ff;--muted:#94a3c4;--border:rgba(139,92,246,0.20);
+  --grad-main:linear-gradient(135deg,#8b5cf6 0%,#22d3ee 50%,#ec4899 100%);
+  --grad-soft:linear-gradient(135deg,#22d3ee,#34d399);
+  --grad-warm:linear-gradient(135deg,#fbbf24,#ec4899);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-0);color:var(--text);overflow-x:hidden;position:relative;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 10%,rgba(139,92,246,0.25),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 30%,rgba(34,211,238,0.20),transparent 60%),
+    radial-gradient(ellipse 50% 50% at 60% 90%,rgba(236,72,153,0.18),transparent 60%);
+  animation:aurora 18s ease-in-out infinite alternate;}
+@keyframes aurora{0%{transform:translate(0,0) scale(1);}50%{transform:translate(-2%,2%) scale(1.05);}100%{transform:translate(2%,-2%) scale(1.1);}}
+#particle-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;}
+
+nav{position:fixed;top:0;width:100%;z-index:999;background:rgba(8,8,26,0.75);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);padding:0 1.2rem;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px;}
+.nav-links{display:flex;gap:.2rem;flex-wrap:wrap;}
+.nav-links a{color:var(--muted);text-decoration:none;padding:.4rem .75rem;border-radius:8px;font-size:.8rem;font-weight:500;transition:all .25s;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(139,92,246,0.18);box-shadow:0 0 18px rgba(139,92,246,.25);}
+
+.page{display:none;min-height:100vh;padding-top:64px;position:relative;z-index:1;}
+.page.active{display:block;animation:fadeSlide .7s cubic-bezier(.22,1,.36,1);}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(28px) scale(.98);}to{opacity:1;transform:none;}}
+
+.typewriter{border-right:3px solid var(--c-cyan);padding-right:4px;animation:blink .75s step-end infinite;white-space:nowrap;}
+@keyframes blink{from,to{border-color:transparent;}50%{border-color:var(--c-cyan);}}
+
+/* HERO */
+.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;}
+.avatar{width:140px;height:140px;border-radius:50%;background:var(--grad-main);display:flex;align-items:center;justify-content:center;font-size:3.4rem;font-weight:900;color:#fff;margin-bottom:1.8rem;font-family:'Playfair Display',serif;position:relative;animation:floatY 4s ease-in-out infinite;box-shadow:0 0 60px rgba(139,92,246,.5),0 0 120px rgba(34,211,238,.25);}
+.avatar::after{content:'';position:absolute;inset:-6px;border-radius:50%;background:var(--grad-main);z-index:-1;filter:blur(20px);opacity:.7;animation:pulseGlow 3s ease-in-out infinite;}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+@keyframes pulseGlow{0%,100%{opacity:.4;transform:scale(1);}50%{opacity:.8;transform:scale(1.08);}}
+
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,4.2rem);font-weight:900;line-height:1.1;}
+.hero-title span{background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradShift 6s ease infinite;display:inline-block;}
+@keyframes gradShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.hero-sub{font-size:1rem;color:var(--muted);margin:1rem 0 .5rem;min-height:1.5em;}
+
+.badge-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin:1.2rem 0;}
+.badge{font-family:'JetBrains Mono',monospace;font-size:.76rem;padding:.4rem .9rem;border-radius:20px;border:1px solid;backdrop-filter:blur(8px);transition:transform .3s;}
+.badge:hover{transform:translateY(-3px);}
+.bp{border-color:var(--c-violet);color:var(--c-violet);background:rgba(139,92,246,.10);}
+.bt{border-color:var(--c-cyan);color:var(--c-cyan);background:rgba(34,211,238,.10);}
+.bg{border-color:var(--c-amber);color:var(--c-amber);background:rgba(251,191,36,.10);}
+.br{border-color:var(--c-magenta);color:var(--c-magenta);background:rgba(236,72,153,.10);}
+
+.stats-row{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin:2rem 0;}
+.stat-card{background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:16px;padding:1.3rem 1.9rem;text-align:center;min-width:130px;transition:all .35s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-main);}
+.stat-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(139,92,246,.3);border-color:var(--c-violet);}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:700;background:var(--grad-soft);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-label{font-size:.73rem;color:var(--muted);margin-top:.2rem;text-transform:uppercase;letter-spacing:.08em;}
+
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem auto;max-width:820px;}
+.info-card{background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:16px;padding:1.3rem;text-align:left;transition:all .3s;}
+.info-card:hover{transform:translateY(-5px);border-color:var(--c-cyan);box-shadow:0 14px 36px rgba(34,211,238,.2);}
+.info-card .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem;}
+.info-card .val{font-size:.93rem;font-weight:600;word-break:break-all;}
+.info-card .ico{font-size:1.5rem;margin-bottom:.5rem;}
+
+.section{max-width:960px;margin:0 auto;padding:3rem 1.5rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:.4rem;}
+.section-title span{background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sline{width:60px;height:4px;background:var(--grad-main);border-radius:2px;margin-bottom:2rem;}
+
+.achieve-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;}
+.achieve-card{background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:18px;padding:1.6rem;transition:all .35s;position:relative;overflow:hidden;}
+.achieve-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-main);}
+.achieve-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(139,92,246,.25);}
+.achieve-card .ai{font-size:2.2rem;margin-bottom:.8rem;}
+.achieve-card h3{font-size:1rem;font-weight:600;margin-bottom:.4rem;}
+.achieve-card p{font-size:.84rem;color:var(--muted);line-height:1.6;}
+
+.strength-list{display:flex;flex-wrap:wrap;gap:.7rem;}
+.strength-item{display:flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:12px;padding:.65rem 1.05rem;font-size:.87rem;transition:all .3s;cursor:default;}
+.strength-item:hover{border-color:var(--c-cyan);color:var(--c-cyan);transform:translateY(-3px);}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--grad-soft);flex-shrink:0;box-shadow:0 0 8px rgba(34,211,238,.6);}
+
+/* COURSE */
+.course-hero{text-align:center;padding:3.5rem 1.5rem 2rem;}
+.course-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;}
+.course-hero h1 span{background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.course-hero p{color:var(--muted);max-width:620px;margin:1rem auto 0;line-height:1.7;}
+
+.live-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1.8rem 0;}
+.ls-item{background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:14px;padding:.9rem 1.5rem;text-align:center;min-width:110px;transition:transform .3s;}
+.ls-item:hover{transform:translateY(-4px);border-color:var(--c-cyan);}
+.ls-num{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:700;background:var(--grad-soft);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ls-lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+
+/* About-course animated stat panels */
+.about-course-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.3rem;max-width:960px;margin:0 auto;padding:0 1.5rem 2rem;}
+.chart-panel{background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:18px;padding:1.3rem;position:relative;overflow:hidden;}
+.chart-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-main);}
+.chart-panel h3{font-size:.95rem;font-weight:600;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem;}
+.chart-panel .csub{font-size:.74rem;color:var(--muted);margin-bottom:.8rem;font-family:'JetBrains Mono',monospace;}
+.chart-panel canvas{display:block;width:100%!important;}
+.replay-btn{display:inline-flex;align-items:center;gap:.4rem;font-size:.73rem;color:var(--c-cyan);background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.3);border-radius:10px;padding:.35rem .8rem;cursor:pointer;margin-top:.7rem;transition:all .25s;font-family:'DM Sans',sans-serif;}
+.replay-btn:hover{background:rgba(34,211,238,.2);transform:translateY(-2px);}
+
+/* Units & chapters */
+.units-container{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+.unit-block{margin-bottom:2.5rem;}
+.unit-label{display:inline-flex;align-items:center;gap:.6rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--c-amber);background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);padding:.4rem 1rem;border-radius:20px;margin-bottom:1.2rem;}
+.chapter-card{background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.5rem;margin-bottom:1rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;}
+.chapter-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad-main);transform:scaleY(0);transform-origin:top;transition:transform .35s;}
+.chapter-card:hover{border-color:var(--c-violet);transform:translateX(8px);box-shadow:0 10px 30px rgba(139,92,246,.25);}
+.chapter-card:hover::before{transform:scaleY(1);}
+.chapter-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.4rem;}
+.chapter-card p{font-size:.84rem;color:var(--muted);line-height:1.55;}
+.ch-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--c-cyan);margin-bottom:.4rem;font-weight:600;letter-spacing:.1em;}
+
+/* Chapter pages */
+.chapter-hero{padding:2.5rem 1.5rem 1rem;max-width:920px;margin:0 auto;}
+.ch-tag{font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--c-violet);background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);padding:.32rem .85rem;border-radius:20px;display:inline-block;margin-bottom:1rem;}
+.chapter-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;line-height:1.2;}
+.chapter-hero h1 span{background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.chapter-hero .intro-text{color:var(--muted);margin-top:.8rem;line-height:1.7;max-width:720px;}
+
+.content-area{max-width:920px;margin:0 auto;padding:0 1.5rem 4rem;}
+.topic-card{background:linear-gradient(135deg,var(--card),var(--card-2));border:1px solid var(--border);border-radius:18px;padding:1.7rem;margin-bottom:1.4rem;transition:border-color .3s;}
+.topic-card:hover{border-color:rgba(139,92,246,.4);}
+.topic-card h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem;}
+.topic-card p{color:var(--muted);line-height:1.75;margin-bottom:.7rem;font-size:.92rem;}
+
+.back-btn{display:inline-flex;align-items:center;gap:.5rem;color:var(--muted);font-size:.86rem;cursor:pointer;padding:.5rem 1.1rem;border-radius:10px;border:1px solid var(--border);background:transparent;transition:all .25s;margin:1.2rem 0 0 1.5rem;font-family:'DM Sans',sans-serif;}
+.back-btn:hover{color:var(--c-cyan);border-color:var(--c-cyan);transform:translateX(-3px);}
+
+/* --- Educational content blocks (matches existing design system) --- */
+.sub-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:var(--c-amber);text-transform:uppercase;margin-bottom:.5rem;display:block;}
+.topic-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin:.4rem 0 .5rem;color:#fff;}
+.topic-card ul{list-style:none;padding:0;margin:.5rem 0;}
+.topic-card ul li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;color:var(--muted);font-size:.88rem;line-height:1.6;}
+.topic-card ul li::before{content:'';position:absolute;left:0;top:.55rem;width:6px;height:6px;border-radius:50%;background:var(--grad-soft);box-shadow:0 0 8px rgba(34,211,238,.6);}
+.topic-card ul li b,.topic-card ul li strong{color:#f1f5ff;font-weight:600;}
+.formula-box{font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.7;color:#cdd6f4;background:rgba(8,8,26,.55);border-left:3px solid var(--c-magenta);border-radius:8px;padding:.85rem 1rem;margin:.8rem 0;white-space:pre-wrap;overflow-x:auto;}
+.dual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:.5rem;}
+.mini-card{background:rgba(139,92,246,.06);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;}
+.mini-card h4{font-size:.9rem;font-weight:600;margin-bottom:.4rem;color:#fff;display:flex;align-items:center;gap:.4rem;}
+.mini-card p{font-size:.82rem;color:var(--muted);line-height:1.6;margin:0;}
+.kbd-row{display:flex;flex-wrap:wrap;gap:.45rem;margin:.6rem 0;}
+.kbd{font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:.3rem .65rem;border-radius:8px;border:1px solid var(--border);background:rgba(34,211,238,.08);color:var(--c-cyan);}
+.note{font-size:.82rem;color:var(--c-amber);background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:10px;padding:.6rem .85rem;margin-top:.6rem;}
+
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:3rem;}
+
+@media(max-width:600px){
+  .nav-links a{padding:.3rem .5rem;font-size:.72rem;}
+  .hero-title{font-size:2rem;}
+  .avatar{width:110px;height:110px;font-size:2.6rem;}
+}
+
+/* ===== Example / Solution blocks ===== */
+.example-box{margin-top:1rem;background:linear-gradient(135deg,rgba(34,211,238,.06),rgba(139,92,246,.06));border:1px solid rgba(34,211,238,.25);border-radius:14px;padding:1rem 1.15rem;}
+.example-box .ex-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:var(--c-cyan);background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.3);padding:.25rem .7rem;border-radius:20px;margin-bottom:.6rem;text-transform:uppercase;}
+.example-box h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin:.2rem 0 .5rem;color:#fff;}
+.example-box .ex-section{margin:.55rem 0;}
+.example-box .ex-section .lab{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c-amber);margin-bottom:.25rem;display:block;}
+.example-box .ex-section p{font-size:.86rem;color:var(--muted);line-height:1.65;margin:0;}
+.example-box .ex-section .formula-box{margin:.4rem 0 0;}
+.example-box canvas{display:block;width:100%!important;margin-top:.6rem;}
+</style>
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+
+<nav>
+  <div class="nav-logo">MMQ</div>
+  <div class="nav-links">
+    <a class="active" onclick="showPage('home',this)">🏠 Home</a>
+    <a onclick="showPage('course',this)">📘 Course</a>
+    <a onclick="showPage('ch1',this)">Ch 1</a>
+    <a onclick="showPage('ch2',this)">Ch 2</a>
+    <a onclick="showPage('ch3',this)">Ch 3</a>
+    <a onclick="showPage('ch4',this)">Ch 4</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="avatar">M</div>
+    <h1 class="hero-title">Mohammad <span>Mazhar Qureshi</span></h1>
+    <p class="hero-sub"><span id="hero-type" class="typewriter"></span></p>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" data-target="215">0</div><div class="stat-label">Roll No</div></div>
+      <div class="stat-card"><div class="stat-num" data-target="4">0</div><div class="stat-label">Chapters</div></div>
+      <div class="stat-card"><div class="stat-num" data-target="2">0</div><div class="stat-label">Units</div></div>
+    </div>
+    <div class="badge-row">
+      <span class="badge bp">Roll No: 215</span>
+      <span class="badge bt">ID: 02FE25BCS038</span>
+      <span class="badge bg">Probability &amp; Statistics</span>
+      <span class="badge br">mazharq391@gmail.com</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card"><div class="ico">🎓</div><div class="lbl">Student ID</div><div class="val">02FE25BCS038</div></div>
+      <div class="info-card"><div class="ico">🔢</div><div class="lbl">Roll Number</div><div class="val">215</div></div>
+      <div class="info-card"><div class="ico">📧</div><div class="lbl">Gmail</div><div class="val">mazharq391@gmail.com</div></div>
+      <div class="info-card"><div class="ico">🏫</div><div class="lbl">University</div><div class="val">KLE Tech University</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">My <span>Achievements</span></h2><div class="sline"></div>
+    <div class="achieve-grid">
+      <div class="achieve-card"><div class="ai">🏆</div><h3>Academic Excellence</h3><p>Consistently strong in core CS subjects with an analytical mindset.</p></div>
+      <div class="achieve-card"><div class="ai">📊</div><h3>Data &amp; Statistics</h3><p>Mastered Probability &amp; Statistics — hypothesis testing, distributions, visualization.</p></div>
+      <div class="achieve-card"><div class="ai">💡</div><h3>Project Contributor</h3><p>Applied ML, Bayesian inference, and statistical analysis in team projects.</p></div>
+      <div class="achieve-card"><div class="ai">🌐</div><h3>Portfolio Builder</h3><p>Built this site to showcase knowledge — initiative beyond the classroom.</p></div>
+      <div class="achieve-card"><div class="ai">🤝</div><h3>Team Leadership</h3><p>Led study groups and helped peers grasp Bayes' theorem and inference.</p></div>
+      <div class="achieve-card"><div class="ai">⚡</div><h3>Quick Learner</h3><p>Rapidly adapts to R, Python (NumPy, SciPy, Matplotlib) and analytics tools.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">My <span>Strengths</span></h2><div class="sline"></div>
+    <div class="strength-list">
+      <div class="strength-item"><span class="dot"></span>Analytical Thinking</div>
+      <div class="strength-item"><span class="dot"></span>Mathematical Aptitude</div>
+      <div class="strength-item"><span class="dot"></span>Data Visualization</div>
+      <div class="strength-item"><span class="dot"></span>Problem Solving</div>
+      <div class="strength-item"><span class="dot"></span>Statistical Reasoning</div>
+      <div class="strength-item"><span class="dot"></span>Team Collaboration</div>
+      <div class="strength-item"><span class="dot"></span>Curiosity &amp; Persistence</div>
+      <div class="strength-item"><span class="dot"></span>Python / R Programming</div>
+      <div class="strength-item"><span class="dot"></span>Bayesian Thinking</div>
+      <div class="strength-item"><span class="dot"></span>Continuous Learning</div>
+    </div>
+  </div>
+  <footer>Made with 💜 by Mohammad Mazhar Qureshi · KLE Tech University · 2025</footer>
+</div>
+
+<!-- COURSE PAGE -->
+<div id="course" class="page">
+  <div class="course-hero">
+    <h1>Probability &amp; <span>Statistics</span></h1>
+    <p>The mathematical backbone of data science — descriptive stats, probability, distributions, and inference. Click any chapter to explore interactive visuals.</p>
+    <div class="live-stats">
+      <div class="ls-item"><div class="ls-num" data-target="2">0</div><div class="ls-lbl">Units</div></div>
+      <div class="ls-item"><div class="ls-num" data-target="4">0</div><div class="ls-lbl">Chapters</div></div>
+      <div class="ls-item"><div class="ls-num" data-target="38">0</div><div class="ls-lbl">Topics</div></div>
+      <div class="ls-item"><div class="ls-num" data-target="120">0</div><div class="ls-lbl">Hours</div></div>
+    </div>
+  </div>
+
+  <!-- About-course animated stats -->
+  <div class="about-course-row">
+    <div class="chart-panel">
+      <h3>📈 Course Progress</h3>
+      <div class="csub">Topics covered per chapter</div>
+      <canvas id="progressCanvas" height="200"></canvas>
+      <button class="replay-btn" onclick="animateProgress()">▶ Replay</button>
+    </div>
+    <div class="chart-panel">
+      <h3>🎯 Topic Distribution</h3>
+      <div class="csub">Donut breakdown</div>
+      <canvas id="donutCanvas" height="200"></canvas>
+      <button class="replay-btn" onclick="animateDonut()">▶ Replay</button>
+    </div>
+    <div class="chart-panel">
+      <h3>🌊 Learning Curve</h3>
+      <div class="csub">Knowledge growth over time</div>
+      <canvas id="curveCanvas" height="200"></canvas>
+      <button class="replay-btn" onclick="animateCurve()">▶ Replay</button>
+    </div>
+  </div>
+
+  <!-- Units / Chapters list -->
+  <div class="units-container">
+    <div class="unit-block">
+      <div class="unit-label">⚡ UNIT I — Descriptive Statistics</div>
+      <div class="chapter-card" onclick="showPage('ch1')">
+        <div class="ch-num">CHAPTER 01</div>
+        <h3>Description of Data</h3>
+        <p>Data &amp; types of variables, mean / weighted / median / mode, quartiles, variance, CV, skewness, histogram, box plot, Q–Q plot.</p>
+      </div>
+      <div class="chapter-card" onclick="showPage('ch2')">
+        <div class="ch-num">CHAPTER 02</div>
+        <h3>Probability</h3>
+        <p>Definition &amp; interpretation, addition &amp; multiplication rules, Bayes' rule and Bayesian classification.</p>
+      </div>
+    </div>
+    <div class="unit-block">
+      <div class="unit-label">⚡ UNIT II — Probability &amp; Inference</div>
+      <div class="chapter-card" onclick="showPage('ch3')">
+        <div class="ch-num">CHAPTER 03</div>
+        <h3>Random Variables &amp; Probability Distribution</h3>
+        <p>Discrete vs continuous RVs, Binomial, Poisson, Normal, bivariate distributions, joint &amp; marginal, covariance.</p>
+      </div>
+      <div class="chapter-card" onclick="showPage('ch4')">
+        <div class="ch-num">CHAPTER 04</div>
+        <h3>Statistical Inference — I</h3>
+        <p>Sampling (SRSWR, SRSWOR, cluster, stratified), hypothesis testing, confidence intervals, sample size, P-value approach.</p>
+      </div>
+    </div>
+  </div>
+  <footer>Made with 💜 by Mohammad Mazhar Qureshi · 2025</footer>
+</div>
+
+<!-- CHAPTER 1 -->
+<div id="ch1" class="page">
+  <button class="back-btn" onclick="showPage('course')">← Back to Course</button>
+  <div class="chapter-hero">
+    <span class="ch-tag">CHAPTER 01 · UNIT I</span>
+    <h1>Introduction to <span>Statistics &amp; Data</span></h1>
+    <p class="intro-text">Foundations of data science — understanding data types, measurement scales, and how to collect and represent information meaningfully.</p>
+  </div>
+  <div class="content-area">
+    <div class="topic-card">
+      <span class="sub-tag">01 — Foundation</span>
+      <h2>📂 Data &amp; Types of Variables</h2>
+      <p>Data refers to raw facts and figures. Every piece of data has a type — understanding the type determines every analysis method you can validly apply.</p>
+      <div class="dual-grid">
+        <div class="mini-card"><h4>🟣 Qualitative (Categorical)</h4><p>Represent labels or categories; cannot be meaningfully added. E.g., gender, blood type, city name.</p></div>
+        <div class="mini-card"><h4>🟢 Quantitative (Numerical)</h4><p>Represent counts or measurements; arithmetic is valid. E.g., height, temperature, income.</p></div>
+        <div class="mini-card"><h4>🔵 Discrete</h4><p>Countable, whole-number values. E.g., number of students (0, 1, 2, …), dice roll.</p></div>
+        <div class="mini-card"><h4>🟠 Continuous</h4><p>Any value within an interval. E.g., height = 170.243… cm, time = 0.378… s.</p></div>
+      </div>
+      <div class="formula-box">Population vs Sample:
+  Population (N) — all subjects of interest
+  Sample (n)     — subset drawn from population
+
+  Parameter — numerical summary of population (μ, σ)
+  Statistic — numerical summary of sample (x̄, s)</div>
+      <div class="kbd-row"><span class="kbd">Nominal</span><span class="kbd">Ordinal</span><span class="kbd">Interval</span><span class="kbd">Ratio</span></div>
+      <h3>📊 Data Type Distribution</h3>
+      <canvas id="ch1Bars" height="220"></canvas>
+      <button class="replay-btn" onclick="animateCh1Bars()">▶ Replay Animation</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 1</span>
+      <h4>Classify the variables</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p>A <b>variable</b> is any characteristic that can take different values across units. Variables are <b>qualitative</b> (categories) or <b>quantitative</b> (numbers, discrete or continuous), measured on Nominal, Ordinal, Interval or Ratio scales.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>Classify each: (a) Blood group of a patient (b) Number of cars in a parking lot (c) Temperature in °C (d) Customer-satisfaction rating: Poor / Fair / Good / Excellent.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">(a) Qualitative — Nominal
+(b) Quantitative — Discrete (Ratio)
+(c) Quantitative — Continuous (Interval, no true zero)
+(d) Qualitative — Ordinal</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Blood group has labels with no order → Nominal. Cars are counted in whole numbers → Discrete. Temperature in °C is continuous but 0°C is not absence of heat → Interval. Ratings have natural order but unequal gaps → Ordinal.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>Identifying the correct scale tells us which statistics are valid: mean is meaningful for (b),(c) but only mode/median for (a),(d). Choosing wrong scale leads to wrong analysis.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">02 — Central Tendency</span>
+      <h2>📐 Mean, Median &amp; Mode</h2>
+      <p>Central tendency captures the "centre" of a dataset — a single representative value. Each measure has different mathematical properties and responds differently to outliers.</p>
+      <div class="dual-grid">
+        <div class="mini-card"><h4>Mean (x̄)</h4><p>Sum all values and divide by count — the "balancing point". Sensitive to outliers.</p>
+          <div class="formula-box">x̄ = Σxᵢ / n
+Grouped: x̄ = Σ(fᵢ·mᵢ) / Σfᵢ
+E.g. {2,4,6,8,10} → 30/5 = 6</div></div>
+        <div class="mini-card"><h4>Median (M)</h4><p>Middle value when sorted. Robust to outliers — best for skewed data.</p>
+          <div class="formula-box">Odd n:  M = x[(n+1)/2]
+Even n: M = (x[n/2]+x[n/2+1])/2
+Grouped: M = L + [(n/2−F)/f]×h</div></div>
+        <div class="mini-card"><h4>Mode (Mo)</h4><p>Most frequent value. Unimodal/bimodal/multimodal. Only valid measure for nominal data.</p>
+          <div class="formula-box">Czuber: Mo = L + [Δ₁/(Δ₁+Δ₂)]×h
+Right-skew: Mode &lt; Median &lt; Mean</div></div>
+        <div class="mini-card"><h4>Weighted Mean</h4><p>Assigns importance to values — used for GPAs and indices.</p>
+          <div class="formula-box">x̄_w = Σ(wᵢ·xᵢ) / Σwᵢ
+GPA: (9×4+7×2+8×3)/(4+2+3)=8.22</div></div>
+      </div>
+    <div class="example-box">
+      <span class="ex-tag">Example 2</span>
+      <h4>Mean, Median, Mode of marks</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Central tendency</b> represents the centre of a dataset. Mean = arithmetic average, Median = middle value when sorted, Mode = most frequent value.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>Marks of 9 students: 45, 50, 55, 60, 60, 65, 70, 75, 100.  Find Mean, Median and Mode.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">n = 9, Σx = 580
+Mean   = 580 / 9 = 64.44
+Median = middle (5th) value = 60
+Mode   = 60 (occurs twice)</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Mean is pulled up by the outlier 100. Median is the value at position (n+1)/2 = 5. Mode is the most repeated value.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>Because mean (64.44) > median (60) the data is mildly right-skewed. For skewed data, median is a better summary than mean.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">03 — Dispersion</span>
+      <h2>📏 Variance, Std Dev &amp; CV</h2>
+      <p>Two datasets can share identical means yet look completely different. Dispersion measures quantify how spread out the data is around its centre.</p>
+      <div class="formula-box">Range = x_max − x_min
+
+Variance:
+  Population: σ² = Σ(xᵢ − μ)² / N
+  Sample:     s² = Σ(xᵢ − x̄)² / (n − 1)   (Bessel's correction)
+
+Standard Deviation:  σ = √σ²    s = √s²
+  Empirical Rule (Normal):
+    μ ± 1σ ≈ 68.27%   μ ± 2σ ≈ 95.45%   μ ± 3σ ≈ 99.73%
+
+Coefficient of Variation (dimensionless):
+  CV = (s / x̄) × 100 %
+
+Quartiles &amp; IQR:
+  Q1 = 25th, Q2 = 50th (median), Q3 = 75th
+  IQR = Q3 − Q1
+  Outlier fences (Tukey): [Q1 − 1.5·IQR , Q3 + 1.5·IQR]</div>
+      <div class="note">⚠ CV not valid when mean ≈ 0 or negative. Use it to compare volatility across different units/scales.</div>
+    <div class="example-box">
+      <span class="ex-tag">Example 3</span>
+      <h4>Variance, Std Dev and CV</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Dispersion</b> measures how spread the data is. Variance = average squared deviation from mean; SD = √variance; CV = (SD/Mean)×100% — unit-free.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>Daily sales (in ₹1000s) for 5 days: 10, 12, 14, 16, 18. Find sample variance, SD and CV.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">x̄ = (10+12+14+16+18)/5 = 14
+Deviations: -4,-2,0,2,4 → squared: 16,4,0,4,16  Σ=40
+s² = 40/(n-1) = 40/4 = 10
+s  = √10 ≈ 3.162
+CV = (3.162/14)×100 ≈ 22.59 %</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>We use n−1 (Bessel's correction) for the sample variance to get an unbiased estimate. SD is in the same unit as data; CV is dimensionless.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>A CV of ~22.6 % means the daily sales fluctuate by about 23 % around the mean — moderate variability. CV lets us compare volatility of two variables with different units.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">04 — Shape</span>
+      <h2>🌀 Skewness</h2>
+      <p>Skewness measures asymmetry of a distribution. Symmetric → 0. Sign and magnitude reveal direction and degree of asymmetry.</p>
+      <div class="formula-box">Pearson: SK = 3(Mean − Median) / σ
+Karl Pearson 1st: SK₁ = (Mean − Mode) / σ
+Moment-based (γ₁): γ₁ = μ₃ / σ³
+   μ₃ = Σ(xᵢ − x̄)³ / n
+
+Interpretation:
+  γ₁ &gt; 0 → Right-skewed (positive)  Mean &gt; Median &gt; Mode
+  γ₁ &lt; 0 → Left-skewed  (negative)  Mean &lt; Median &lt; Mode
+  γ₁ = 0 → Symmetric</div>
+      <ul>
+        <li><b>Right-skewed:</b> long right tail. E.g., income, house prices.</li>
+        <li><b>Left-skewed:</b> long left tail. E.g., age at death, easy exam scores.</li>
+      </ul>
+      <h3>🌀 Skewness Shapes</h3>
+      <canvas id="skewCanvas" height="240"></canvas>
+      <button class="replay-btn" onclick="animateSkew()">▶ Replay Animation</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 4</span>
+      <h4>Compute Skewness</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Skewness</b> measures asymmetry. γ₁ > 0 right-skewed (tail on right), γ₁ < 0 left-skewed, γ₁ = 0 symmetric.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>For a dataset Mean = 50, Median = 45, SD = 8. Find Pearson's coefficient of skewness and comment.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">SK = 3·(Mean − Median)/σ
+   = 3·(50 − 45)/8
+   = 15/8 = 1.875</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Pearson's formula uses the gap between mean and median, scaled by the SD. A large positive value indicates the mean is being pulled to the right.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>SK = +1.875 ⇒ strongly right-skewed distribution (long right tail). Typical examples: income, house prices. Median is a more reliable centre here than the mean.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">04b — Quartiles</span>
+      <h2>📐 Quartiles &amp; IQR</h2>
+      <p>Quartiles split sorted data into four equal parts. The interquartile range (IQR = Q3 − Q1) captures the middle 50% and is highly robust to outliers.</p>
+      <h3>📊 Quartile Splits</h3>
+      <canvas id="quartileCanvas" height="240"></canvas>
+      <button class="replay-btn" onclick="animateQuartile()">▶ Replay Animation</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 5</span>
+      <h4>Quartiles and IQR</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Quartiles</b> Q1, Q2, Q3 split sorted data into 4 equal parts. IQR = Q3 − Q1 captures the middle 50% and is robust to outliers.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>Data (sorted): 4, 7, 8, 10, 12, 14, 15, 18, 20, 22, 25. Find Q1, Q2, Q3, IQR and outlier fences.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">n = 11
+Q2 (median) = 6th value = 14
+Lower half: 4,7,8,10,12  → Q1 = 8
+Upper half: 15,18,20,22,25 → Q3 = 20
+IQR = 20 − 8 = 12
+Fences: [Q1 − 1.5·IQR , Q3 + 1.5·IQR] = [-10, 38]</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Q1 is the median of the lower half, Q3 of the upper half. Tukey's 1.5·IQR fences flag points outside the typical range as potential outliers.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>No data point lies outside [-10, 38] so there are no outliers. The middle 50 % of values lie within a span of 12 units — gives a quick spread summary.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">05 — Visualisation</span>
+      <h2>📊 Histogram, Box Plot &amp; QQ Plot</h2>
+      <p>Visual representations transform abstract numbers into immediate insight. Each plot reveals a different structural property of the data.</p>
+      <div class="dual-grid">
+        <div class="mini-card"><h4>Histogram</h4><p>Groups continuous data into equal-width bins; bar heights represent frequency. Sturges' Rule: k ≈ 1 + 3.322·log₁₀(n).</p></div>
+        <div class="mini-card"><h4>Box Plot</h4><p>Five-number summary: Min | Q1 | Median | Q3 | Max. Points beyond fences = outliers.</p></div>
+        <div class="mini-card"><h4>Normal Q–Q Plot</h4><p>Observed vs theoretical quantiles. Straight diagonal → normally distributed; S-curve → heavy tails.</p></div>
+      </div>
+
+      <h3>📊 Histogram</h3>
+      <canvas id="histCanvas" height="240"></canvas>
+      <button class="replay-btn" onclick="animateHist()">▶ Replay Animation</button>
+
+      <h3 style="margin-top:1.4rem;">📦 Box Plot</h3>
+      <canvas id="boxCanvas" height="240"></canvas>
+      <button class="replay-btn" onclick="animateBox()">▶ Replay Animation</button>
+
+      <h3 style="margin-top:1.4rem;">📈 Q–Q Normal Plot</h3>
+      <canvas id="qqCanvas" height="240"></canvas>
+      <button class="replay-btn" onclick="animateQQ()">▶ Replay Animation</button>
+
+      <h3 style="margin-top:1.4rem;">🌐 Population vs Sample</h3>
+      <canvas id="ch1Sample" height="240"></canvas>
+      <button class="replay-btn" onclick="animateCh1Sample()">▶ Replay Animation</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 6</span>
+      <h4>Build a frequency table & histogram</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p>A <b>histogram</b> groups continuous data into equal-width bins; bar height = frequency. <b>Box plot</b> shows 5-number summary; <b>Q–Q plot</b> checks normality.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>Heights (cm) of 20 students: 150,152,155,156,158,160,160,161,162,163,164,165,165,167,168,170,172,174,178,180. Build a frequency table with bin width 5 starting at 150.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">Bin       Freq
+150–154    2
+155–159    3
+160–164    6
+165–169    4
+170–174    3
+175–180    2
+Total      20
+Sturges' k ≈ 1 + 3.322·log₁₀(20) ≈ 5.3 → 5–6 bins ✓</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Bins must be equal-width and non-overlapping. Sturges' rule suggests roughly 5 bins for n=20, which matches our table.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>The histogram is roughly bell-shaped and symmetric around 162–164 cm — heights look approximately normal. Check with a Q–Q plot: points should fall on the diagonal line.</p></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 2 — PROBABILITY -->
+<div id="ch2" class="page">
+  <button class="back-btn" onclick="showPage('course')">← Back to Course</button>
+  <div class="chapter-hero">
+    <span class="ch-tag">CHAPTER 02 · UNIT I</span>
+    <h1><span>Probability</span> &amp; Bayes' Rule</h1>
+    <p class="intro-text">Probability is the language of uncertainty — it quantifies how likely an event is. From classical definitions to Bayes' theorem and Bayesian classification, this chapter builds the foundation for inference and machine learning.</p>
+  </div>
+  <div class="content-area">
+
+    <div class="topic-card">
+      <span class="sub-tag">01 — Definition</span>
+      <h2>🎲 What is Probability?</h2>
+      <p>Probability P(A) measures the likelihood of an event A on a 0–1 scale: 0 = impossible, 1 = certain. There are three classical interpretations.</p>
+      <div class="dual-grid">
+        <div class="mini-card"><h4>Classical</h4><p>Equally likely outcomes. P(A) = favourable / total. E.g., P(even on die) = 3/6.</p></div>
+        <div class="mini-card"><h4>Frequentist</h4><p>Long-run relative frequency. P(A) = lim (n→∞) f(A)/n. E.g., coin flipped 10⁶ times.</p></div>
+        <div class="mini-card"><h4>Subjective (Bayesian)</h4><p>Degree of personal belief, updated as evidence arrives. Foundation of Bayesian inference.</p></div>
+      </div>
+      <div class="formula-box">Sample space S — set of all possible outcomes
+Event A ⊆ S — a subset of interest
+Axioms:  0 ≤ P(A) ≤ 1   P(S)=1   P(A∪B)=P(A)+P(B) if disjoint</div>
+    <div class="example-box">
+      <span class="ex-tag">Example 7</span>
+      <h4>Probability of an event</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Probability</b> P(A) is a number in [0,1] expressing how likely event A is. Classical: favourable / total equally-likely outcomes.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A fair die is rolled once. Find P(prime number).</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">S = {1,2,3,4,5,6},  |S| = 6
+Primes in S = {2,3,5},  |A| = 3
+P(prime) = 3/6 = 0.5</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Each face is equally likely (classical definition). We count favourable outcomes (primes ≤ 6) and divide by total outcomes.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>There is a 50 % chance of getting a prime number on a single roll. Long-run, in 1000 rolls we'd expect ≈ 500 primes (frequentist view).</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">02 — Rules</span>
+      <h2>➕ Addition &amp; Multiplication Rules</h2>
+      <div class="formula-box">Addition Rule:
+  P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+  Mutually exclusive: P(A∩B)=0 → P(A∪B) = P(A)+P(B)
+
+Multiplication Rule:
+  P(A ∩ B) = P(A) · P(B | A)
+  Independent events: P(A∩B) = P(A)·P(B)
+
+Conditional Probability:
+  P(A | B) = P(A ∩ B) / P(B),   P(B) &gt; 0
+
+Complement: P(Aᶜ) = 1 − P(A)
+Total Probability:
+  P(B) = Σᵢ P(B | Aᵢ) · P(Aᵢ)</div>
+      <ul>
+        <li><b>Independent:</b> outcome of one event does not affect the other (e.g., two coin flips).</li>
+        <li><b>Mutually exclusive:</b> events cannot occur together (e.g., rolling 1 and 6 on one die).</li>
+      </ul>
+    <div class="example-box">
+      <span class="ex-tag">Example 8</span>
+      <h4>Addition & Multiplication rules</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Addition rule:</b> P(A∪B)=P(A)+P(B)−P(A∩B). <b>Multiplication rule:</b> P(A∩B)=P(A)·P(B|A); independent ⇒ P(A∩B)=P(A)·P(B).</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A card is drawn from a standard 52-card deck. (a) P(King or Heart)? (b) Two cards are drawn with replacement: P(both Kings)?</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">(a) P(K) = 4/52,  P(H) = 13/52,  P(K∩H) = 1/52
+    P(K∪H) = 4/52 + 13/52 − 1/52 = 16/52 = 4/13 ≈ 0.308
+
+(b) With replacement → independent
+    P(both K) = (4/52)·(4/52) = 1/169 ≈ 0.00592</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>In (a) the King of Hearts is counted in both sets, so we subtract its probability once. In (b) drawing with replacement makes the two draws independent.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>About 30.8 % chance the card is a King or a Heart. Probability of two consecutive Kings is very small (~0.6 %), showing how independent rare events compound.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">03 — Bayes' Theorem</span>
+      <h2>🧠 Bayes' Rule</h2>
+      <p>Bayes' theorem reverses conditional probabilities — given evidence, what is the probability of a hypothesis? It's the engine of modern AI, medical diagnosis, and spam filters.</p>
+      <div class="formula-box">           P(B | A) · P(A)
+P(A | B) = ─────────────────
+                P(B)
+
+Where P(B) = Σᵢ P(B | Aᵢ) · P(Aᵢ)   (Law of Total Probability)
+
+Terminology:
+  P(A)     — Prior         (belief before evidence)
+  P(B|A)   — Likelihood    (evidence given hypothesis)
+  P(A|B)   — Posterior     (updated belief)
+  P(B)     — Evidence / marginal likelihood</div>
+      <div class="note">💡 Classic example: a 99% accurate test for a disease that affects 1 in 1000 still gives P(disease | positive) ≈ 9% — base rates matter!</div>
+    <div class="example-box">
+      <span class="ex-tag">Example 9</span>
+      <h4>Disease test (Bayes)</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Bayes' theorem</b> updates a prior belief P(A) into a posterior P(A|B) given evidence B: P(A|B) = P(B|A)·P(A)/P(B).</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A disease affects 1 in 1000 people. A test is 99% accurate (sensitivity = specificity = 0.99). A randomly chosen person tests positive. Find P(Disease | Positive).</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">P(D)=0.001,  P(¬D)=0.999
+P(+|D)=0.99,  P(+|¬D)=0.01
+
+P(+) = 0.99·0.001 + 0.01·0.999
+     = 0.00099 + 0.00999 = 0.01098
+
+P(D | +) = (0.99·0.001) / 0.01098
+         ≈ 0.0902  ≈ 9.02 %</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Even a highly accurate test produces many false positives when the disease is rare, because the 1 % false-positive rate acts on the huge healthy population (99.9 %).</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>Despite a positive result, the actual chance of having the disease is only ~9 %. This is the classic <i>base-rate fallacy</i> — prior probabilities matter enormously.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">04 — Application</span>
+      <h2>🤖 Bayesian Classification</h2>
+      <p>The Naive Bayes classifier applies Bayes' theorem with a "naive" independence assumption between features. Despite simplicity, it performs surprisingly well in text classification, spam filtering, and sentiment analysis.</p>
+      <div class="formula-box">Predict class C* that maximises posterior:
+  C* = argmax_C  P(C) · Π P(xᵢ | C)
+
+Naive assumption: features x₁,…,xₙ conditionally independent given C.
+
+Steps:
+  1. Compute prior P(C) for each class from training data.
+  2. Compute likelihood P(xᵢ | C) for each feature.
+  3. Multiply &amp; pick the class with highest score.
+
+Use cases: spam detection, document categorisation, medical diagnosis.</div>
+      <h3>🔔 Bonus: Distribution Preview</h3>
+      <canvas id="histCanvas" height="200"></canvas>
+      <button class="replay-btn" onclick="animateHist()">▶ Replay</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 10</span>
+      <h4>Naive Bayes spam filter</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Naive Bayes</b> classifies by picking the class C maximising P(C)·∏P(xᵢ|C), assuming features are conditionally independent given the class.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>Training: P(Spam)=0.4, P(Ham)=0.6. Word "free": P(free|Spam)=0.8, P(free|Ham)=0.1. Word "meeting": P(meeting|Spam)=0.05, P(meeting|Ham)=0.4. Classify an email containing both words.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">Score(Spam) = 0.4 · 0.8 · 0.05 = 0.0160
+Score(Ham)  = 0.6 · 0.1 · 0.4  = 0.0240
+
+Normalise:
+  P(Spam|words) = 0.016/(0.016+0.024) = 0.40
+  P(Ham|words)  = 0.024/0.040 = 0.60
+
+→ Predict HAM</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>We multiply the prior by each likelihood and pick the larger score. Naive independence lets us multiply word probabilities individually.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>Although "free" is spammy, the presence of "meeting" pushes the email toward Ham. Posterior 60 % Ham vs 40 % Spam → classifier labels it as Ham.</p></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 3 — RANDOM VARIABLES & DISTRIBUTIONS -->
+<div id="ch3" class="page">
+  <button class="back-btn" onclick="showPage('course')">← Back to Course</button>
+  <div class="chapter-hero">
+    <span class="ch-tag">CHAPTER 03 · UNIT II</span>
+    <h1>Random Variables &amp; <span>Probability Distributions</span></h1>
+    <p class="intro-text">A random variable assigns numerical values to outcomes of random experiments. Distributions describe how probabilities are spread across these values — the building blocks of statistical modelling.</p>
+  </div>
+  <div class="content-area">
+
+    <div class="topic-card">
+      <span class="sub-tag">01 — Random Variables</span>
+      <h2>🎯 Discrete vs Continuous</h2>
+      <div class="dual-grid">
+        <div class="mini-card"><h4>Discrete RV</h4><p>Takes countable values. Described by Probability Mass Function (PMF). E.g., dice roll, number of emails per hour.</p>
+          <div class="formula-box">P(X = x) = pₓ,  Σ pₓ = 1
+E[X] = Σ x · P(X=x)
+Var(X) = E[X²] − (E[X])²</div></div>
+        <div class="mini-card"><h4>Continuous RV</h4><p>Takes any value in an interval. Described by Probability Density Function (PDF). E.g., height, time, voltage.</p>
+          <div class="formula-box">P(a ≤ X ≤ b) = ∫ₐᵇ f(x) dx
+∫ f(x) dx = 1
+E[X] = ∫ x · f(x) dx</div></div>
+      </div>
+    <div class="example-box">
+      <span class="ex-tag">Example 11</span>
+      <h4>Expectation of a discrete RV</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p>A <b>discrete RV</b> takes countable values with PMF P(X=x). Expectation E[X] = Σ x·P(X=x); Variance Var(X)=E[X²]−(E[X])².</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>X = score on a fair die. Find E[X] and Var(X).</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">P(X=k)=1/6 for k=1..6
+E[X]  = (1+2+3+4+5+6)/6 = 21/6 = 3.5
+E[X²] = (1+4+9+16+25+36)/6 = 91/6 ≈ 15.167
+Var(X) = 15.167 − 3.5² = 15.167 − 12.25 = 2.917
+SD = √2.917 ≈ 1.708</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Each face is equally likely. We sum k·(1/6) for the mean, and k²·(1/6) for E[X²].</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>On average a die shows 3.5; typical deviation from this average is about 1.7. These match the well-known formulas (n²−1)/12 for a discrete uniform RV.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">02 — Binomial</span>
+      <h2>🎲 Binomial Distribution</h2>
+      <p>Models the number of successes in <b>n</b> independent Bernoulli trials, each with success probability <b>p</b>.</p>
+      <div class="formula-box">P(X = k) = C(n,k) · pᵏ · (1−p)ⁿ⁻ᵏ,   k = 0,1,…,n
+
+Mean:     μ = np
+Variance: σ² = np(1−p)
+
+Conditions:
+  • Fixed number of trials n
+  • Each trial: success/failure
+  • Constant probability p
+  • Trials independent</div>
+      <canvas id="ch3Binom" height="240"></canvas>
+      <button class="replay-btn" onclick="animateCh3Binom()">▶ Replay Animation</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 12</span>
+      <h4>Binomial: defective items</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Binomial(n,p):</b> number of successes in n independent Bernoulli trials. P(X=k)=C(n,k)·pᵏ·(1−p)ⁿ⁻ᵏ.  μ=np, σ²=np(1−p).</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A factory produces items with defect probability p = 0.1. A sample of n = 10 items is inspected. Find P(exactly 2 defectives) and the expected number of defectives.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">X ~ Bin(10, 0.1)
+P(X=2) = C(10,2)·(0.1)²·(0.9)⁸
+       = 45 · 0.01 · 0.43047
+       ≈ 0.1937
+
+E[X] = np = 10·0.1 = 1
+Var(X) = np(1−p) = 0.9,  SD ≈ 0.949</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>C(10,2)=45 ways to pick which 2 of the 10 items are defective; each such arrangement has probability (0.1)²·(0.9)⁸.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>There is ~19.4 % chance of seeing exactly 2 defectives. On average we expect 1 defective per batch of 10 — useful for quality-control planning.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">03 — Poisson</span>
+      <h2>📡 Poisson Distribution</h2>
+      <p>Models the number of events occurring in a fixed interval of time/space when events occur independently at a known average rate λ.</p>
+      <div class="formula-box">P(X = k) = (λᵏ · e⁻ᵏ) / k!,   k = 0,1,2,…
+
+Mean = Variance = λ
+
+Examples:
+  • Calls arriving at a call centre
+  • Defects per page in a book
+  • Radioactive decay events per second
+
+Approximation: Binomial(n, p) → Poisson(λ = np)
+when n is large and p is small.</div>
+    <div class="example-box">
+      <span class="ex-tag">Example 13</span>
+      <h4>Poisson: call centre arrivals</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Poisson(λ):</b> count of events in fixed interval when events occur independently at average rate λ. P(X=k)=e^{−λ}·λᵏ/k!. Mean = Variance = λ.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A call centre receives an average of λ = 4 calls per minute. Find P(exactly 2 calls in a minute) and P(at least 1 call).</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">P(X=2) = e⁻⁴ · 4² / 2!
+       = 0.01832 · 16 / 2
+       ≈ 0.1465
+
+P(X≥1) = 1 − P(X=0)
+       = 1 − e⁻⁴ = 1 − 0.01832
+       ≈ 0.9817</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>We plug k=2 into the Poisson PMF. P(at least 1) is found via the complement to avoid an infinite sum.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>~14.7 % chance of exactly 2 calls; ~98.2 % chance of at least one call per minute. Poisson is the go-to model for rare-event counts.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">04 — Normal</span>
+      <h2>🔔 Normal Distribution</h2>
+      <p>The most important continuous distribution — symmetric, bell-shaped, governed by mean μ and std deviation σ. Underpins the Central Limit Theorem.</p>
+      <div class="formula-box">f(x) = (1/(σ√2π)) · exp[ −(x−μ)² / (2σ²) ]
+
+Standard Normal: Z = (X − μ) / σ ~ N(0,1)
+
+Empirical Rule:
+  μ ± 1σ → 68.27%
+  μ ± 2σ → 95.45%
+  μ ± 3σ → 99.73%</div>
+      <canvas id="ch3Normal" height="240"></canvas>
+      <button class="replay-btn" onclick="animateCh3Normal()">▶ Replay Animation</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 14</span>
+      <h4>Normal: standardising a score</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Normal(μ,σ²):</b> bell-shaped continuous distribution. Standardise via Z=(X−μ)/σ ~ N(0,1) and use Z-tables.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>IQ scores follow N(100, 15²). Find P(IQ > 130) and the IQ that separates the top 5 %.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">P(X>130) = P(Z > (130−100)/15)
+         = P(Z > 2)
+         ≈ 0.0228   (≈ 2.28 %)
+
+Top 5 % cut-off:
+  z₀.₉₅ = 1.645
+  X = μ + z·σ = 100 + 1.645·15
+    ≈ 124.7</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>A z-score of 2 means 2 SDs above the mean. By the Empirical Rule ~2.5 % lie beyond 2σ, matching 0.0228.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>Only ~2.3 % of people score above 130 (often called "gifted"). To be in the top 5 %, an IQ of ~125 is required.</p></div>
+      <div class="ex-section">
+        <span class="lab">📊 Visualisation</span>
+        <canvas id="exNormal" height="200"></canvas>
+        <button class="replay-btn" onclick="animateExNormal()">▶ Replay Animation</button>
+      </div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">05 — Bivariate</span>
+      <h2>🔗 Joint, Marginal &amp; Covariance</h2>
+      <p>When two random variables X and Y are studied together, their joint distribution describes how they vary in tandem.</p>
+      <div class="formula-box">Joint PMF/PDF:    f(x,y)
+Marginal of X:    f_X(x) = Σ_y f(x,y)   or   ∫ f(x,y) dy
+Conditional:      f(y|x) = f(x,y) / f_X(x)
+
+Covariance:
+  Cov(X,Y) = E[(X − μ_X)(Y − μ_Y)]
+           = E[XY] − E[X]·E[Y]
+
+Correlation:
+  ρ = Cov(X,Y) / (σ_X · σ_Y),   −1 ≤ ρ ≤ 1
+
+Independence ⇒ Cov(X,Y) = 0   (converse not always true)</div>
+    <div class="example-box">
+      <span class="ex-tag">Example 15</span>
+      <h4>Covariance & Correlation</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Covariance</b> measures joint linear variation; <b>Correlation</b> ρ = Cov/(σx·σy) is its scale-free version in [−1,1].</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>X = hours studied: 2, 4, 6, 8.   Y = marks: 50, 60, 70, 90.  Find Cov(X,Y) and ρ.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">x̄ = 5, ȳ = 67.5
+dx: -3,-1,1,3        dy: -17.5,-7.5,2.5,22.5
+dx·dy: 52.5, 7.5, 2.5, 67.5  Σ = 130
+Cov(X,Y) = 130/(n-1) = 130/3 ≈ 43.33
+
+Var(X) = (9+1+1+9)/3 = 20/3 → σx ≈ 2.582
+Var(Y) = (306.25+56.25+6.25+506.25)/3 ≈ 291.67 → σy ≈ 17.078
+
+ρ = 43.33 / (2.582·17.078) ≈ 0.983</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>We compute deviations from the means, then average their products. Dividing by σx·σy strips the units away.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>ρ ≈ 0.98 → very strong positive linear relationship: more study hours strongly associated with higher marks.</p></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTER 4 — STATISTICAL INFERENCE -->
+<div id="ch4" class="page">
+  <button class="back-btn" onclick="showPage('course')">← Back to Course</button>
+  <div class="chapter-hero">
+    <span class="ch-tag">CHAPTER 04 · UNIT II</span>
+    <h1>Statistical <span>Inference — I</span></h1>
+    <p class="intro-text">From samples to decisions about populations — sampling techniques, confidence intervals, hypothesis testing, and p-values form the toolkit of inferential statistics.</p>
+  </div>
+  <div class="content-area">
+
+    <div class="topic-card">
+      <span class="sub-tag">01 — Sampling</span>
+      <h2>🎯 Sampling Methods</h2>
+      <p>A well-chosen sample lets us draw conclusions about an entire population without measuring everyone.</p>
+      <div class="dual-grid">
+        <div class="mini-card"><h4>SRSWR</h4><p>Simple Random Sampling <b>With Replacement</b>. Each unit can be chosen more than once. Trials are independent.</p></div>
+        <div class="mini-card"><h4>SRSWOR</h4><p>Simple Random Sampling <b>Without Replacement</b>. Each unit chosen at most once. Lower variance for finite populations.</p></div>
+        <div class="mini-card"><h4>Stratified</h4><p>Divide population into homogeneous strata, then sample randomly from each. Improves precision when strata differ.</p></div>
+        <div class="mini-card"><h4>Cluster</h4><p>Divide population into clusters, randomly select whole clusters. Cost-effective for geographically dispersed populations.</p></div>
+      </div>
+    <div class="example-box">
+      <span class="ex-tag">Example 16</span>
+      <h4>Choose a sampling method</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>Sampling</b> picks a manageable subset that represents the population. Choice depends on cost, structure and required precision.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A university has 10,000 students across 4 colleges of unequal size. We want to estimate average pocket money. Which sampling design is most appropriate?</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">Recommended: Stratified Sampling.
+• Strata = the 4 colleges (homogeneous within)
+• Draw an SRS from each college
+• Allocate sample size proportional to college size (Neyman / proportional allocation)</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Pocket money likely varies more between colleges than within (e.g., engineering vs arts). Stratification reduces variance compared to simple random sampling.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>A stratified estimator of the mean will have a smaller standard error than an SRS of the same size, giving tighter confidence intervals.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">02 — Hypothesis Testing</span>
+      <h2>⚖️ Basic Terminology</h2>
+      <div class="formula-box">H₀ — Null hypothesis      (status quo / no effect)
+H₁ — Alternative hyp.     (the claim to be tested)
+
+Errors:
+  Type I  (α): reject H₀ when it is true
+  Type II (β): fail to reject H₀ when it is false
+  Power = 1 − β
+
+Test statistic — function of sample data
+Significance level α — typically 0.05 or 0.01
+p-value — probability of observed (or more extreme) data under H₀
+Decision: reject H₀ if p-value &lt; α</div>
+    <div class="example-box">
+      <span class="ex-tag">Example 17</span>
+      <h4>Set up H₀, H₁ and identify errors</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p><b>H₀</b> = status quo, <b>H₁</b> = claim. Type-I (α): reject true H₀; Type-II (β): fail to reject false H₀.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A company claims its bulbs last on average more than 1000 hours. Set up the hypotheses, state α = 0.05, and describe Type-I and Type-II errors in this context.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">H₀: μ ≤ 1000   (no improvement)
+H₁: μ > 1000   (right-tailed claim)
+Significance level α = 0.05
+
+Type-I  error: Conclude bulbs last >1000 hr when they actually do not.
+Type-II error: Fail to detect that bulbs really do last >1000 hr.</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>We always start from the conservative H₀. The direction of H₁ (one-tailed > here) determines the rejection region.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>A Type-I error misleads consumers into believing a false marketing claim. A Type-II error denies the company credit for a genuine improvement. α controls the first; power = 1−β controls the second.</p></div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">03 — Confidence Interval</span>
+      <h2>🎯 Confidence Interval &amp; Sample Size</h2>
+      <p>A confidence interval gives a plausible range for an unknown parameter at a chosen confidence level (usually 95%).</p>
+      <div class="formula-box">CI for population mean (σ known):
+  x̄ ± z_{α/2} · (σ / √n)
+
+CI when σ unknown (use sample s, t-distribution):
+  x̄ ± t_{α/2, n−1} · (s / √n)
+
+CI for proportion:
+  p̂ ± z_{α/2} · √[ p̂(1−p̂) / n ]
+
+Sample size determination (mean):
+  n = ( z_{α/2} · σ / E )²    where E = margin of error
+
+Sample size (proportion):
+  n = z²_{α/2} · p(1−p) / E²</div>
+      <canvas id="ch4CI" height="240"></canvas>
+      <button class="replay-btn" onclick="animateCh4CI()">▶ Replay Animation</button>
+    <div class="example-box">
+      <span class="ex-tag">Example 18</span>
+      <h4>95 % CI for the mean</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p>A <b>confidence interval</b> gives a plausible range for an unknown parameter at a chosen confidence level (e.g., 95 %).</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>A sample of n = 36 light bulbs has x̄ = 1050 hr and population SD σ = 120 hr. Construct a 95 % CI for μ.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">SE = σ/√n = 120/√36 = 20
+z_{0.025} = 1.96
+Margin of error E = 1.96·20 = 39.2
+
+95 % CI = 1050 ± 39.2
+        = (1010.8 ,  1089.2) hr</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>Because σ is known and n is reasonably large, we use the z-interval. SE shrinks as √n grows — bigger samples, narrower intervals.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>We are 95 % confident the true mean lifetime is between 1010.8 and 1089.2 hours. Since 1000 lies <i>outside</i> this interval, the data give evidence that μ > 1000.</p></div>
+      <div class="ex-section">
+        <span class="lab">📊 Visualisation</span>
+        <canvas id="exCI" height="180"></canvas>
+        <button class="replay-btn" onclick="animateExCI()">▶ Replay Animation</button>
+      </div>
+    </div>
+    </div>
+
+    <div class="topic-card">
+      <span class="sub-tag">04 — Z &amp; T Tests</span>
+      <h2>📐 Tests for Means &amp; Proportions (P-value approach)</h2>
+      <div class="formula-box">One-sample mean (σ known) — Z test:
+  Z = (x̄ − μ₀) / (σ / √n)
+
+One-sample mean (σ unknown) — t test:
+  t = (x̄ − μ₀) / (s / √n),   df = n − 1
+
+Two-sample means (independent, equal var):
+  t = (x̄₁ − x̄₂) / √[ s_p² (1/n₁ + 1/n₂) ]
+  s_p² = [(n₁−1)s₁² + (n₂−1)s₂²] / (n₁+n₂−2)
+
+One-sample proportion:
+  Z = (p̂ − p₀) / √[ p₀(1−p₀)/n ]
+
+Two-sample proportion:
+  Z = (p̂₁ − p̂₂) / √[ p̄(1−p̄)(1/n₁ + 1/n₂) ]
+
+Decision (P-value):
+  • Two-tailed: reject H₀ if p &lt; α
+  • One-tailed: compare against α directly</div>
+      <canvas id="ch4HT" height="240"></canvas>
+      <button class="replay-btn" onclick="animateCh4HT()">▶ Replay Animation</button>
+      <div class="note">💡 Lab covers: Probability distributions, Hypothesis Testing for proportions, means (single &amp; differences) using R/Python.</div>
+    <div class="example-box">
+      <span class="ex-tag">Example 19</span>
+      <h4>One-sample Z test (P-value)</h4>
+      <div class="ex-section"><span class="lab">📘 Definition</span><p>Use a <b>Z test</b> when σ is known (or n large). Compute Z = (x̄−μ₀)/(σ/√n) and compare its p-value to α.</p></div>
+      <div class="ex-section"><span class="lab">❓ Example Problem</span><p>Test H₀: μ = 1000 vs H₁: μ > 1000 with x̄ = 1050, σ = 120, n = 36, α = 0.05.</p></div>
+      <div class="ex-section"><span class="lab">✅ Solution</span><div class="formula-box">Z = (1050 − 1000) / (120/√36)
+  = 50 / 20
+  = 2.5
+
+P-value (right-tail) = P(Z > 2.5) ≈ 0.0062
+
+Decision: 0.0062 < 0.05 → REJECT H₀.</div></div>
+      <div class="ex-section"><span class="lab">💡 Explanation</span><p>The test statistic measures how many SEs the sample mean is above μ₀. The p-value is the tail probability under H₀ of seeing something this extreme or more.</p></div>
+      <div class="ex-section"><span class="lab">🔍 Interpretation</span><p>There is strong evidence (p ≈ 0.6 %) that the true mean lifetime exceeds 1000 hours — supporting the company's claim at the 5 % level.</p></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================ NAV ================ */
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  if(el)el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{
+    if(id==='course'){countUp('#course');animateProgress();animateDonut();animateCurve();}
+    if(id==='ch1'){animateCh1Bars();animateCh1Sample();animateHist();animateBox();animateQQ();animateSkew();animateQuartile();}
+    if(id==='ch2'){animateHist();animateQQ();animateBox();}
+    if(id==='ch3'){animateCh3Normal();animateCh3Binom();animateExNormal();}
+    if(id==='ch4'){animateCh4CI();animateCh4HT();animateExCI();}
+  },280);
+}
+
+/* ================ TYPEWRITER ================ */
+const phrases=['CS Student @ KLE Tech','Probability & Statistics Enthusiast','Data Storyteller','Future Data Scientist'];
+let pi=0,ci=0,del=false;
+function type(){
+  const el=document.getElementById('hero-type');if(!el)return;
+  const cur=phrases[pi];el.textContent=cur.substring(0,ci);
+  if(!del&&ci<cur.length){ci++;setTimeout(type,70);}
+  else if(del&&ci>0){ci--;setTimeout(type,35);}
+  else{del=!del;if(!del)pi=(pi+1)%phrases.length;setTimeout(type,1200);}
+}
+type();
+
+/* ================ COUNT UP ================ */
+function countUp(scope){
+  const root=scope?document.querySelector(scope):document;
+  root.querySelectorAll('[data-target]').forEach(el=>{
+    if(el.dataset.done)return;el.dataset.done='1';
+    const tgt=+el.dataset.target;let cur=0;const step=Math.max(1,Math.ceil(tgt/40));
+    const t=setInterval(()=>{cur+=step;if(cur>=tgt){cur=tgt;clearInterval(t);}el.textContent=cur;},30);
+  });
+}
+countUp('#home');
+
+/* ================ PARTICLES ================ */
+(function(){
+  const c=document.getElementById('particle-canvas'),x=c.getContext('2d');
+  let w,h,parts;const COLORS=['#8b5cf6','#22d3ee','#ec4899','#fbbf24'];
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight;}
+  size();addEventListener('resize',size);
+  parts=Array.from({length:50},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+0.5,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,c:COLORS[Math.floor(Math.random()*COLORS.length)]}));
+  (function loop(){
+    x.clearRect(0,0,w,h);
+    parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle=p.c;x.globalAlpha=.7;x.fill();});
+    x.globalAlpha=1;requestAnimationFrame(loop);
+  })();
+})();
+
+/* ================ CHART HELPERS ================ */
+function fitCanvas(c){
+  const dpr=window.devicePixelRatio||1;
+  const r=c.getBoundingClientRect();
+  const cssH=c.getAttribute('height')?+c.getAttribute('height'):220;
+  c.width=r.width*dpr;c.height=cssH*dpr;
+  c.style.height=cssH+'px';
+  const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {ctx,w:r.width,h:cssH};
+}
+function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+function gradient(ctx,x0,y0,x1,y1,c1,c2){const g=ctx.createLinearGradient(x0,y0,x1,y1);g.addColorStop(0,c1);g.addColorStop(1,c2);return g;}
+function roundRect(ctx,x,y,w,h,r){if(h<=0||w<=0)return;r=Math.min(r,h/2,w/2);
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h);ctx.lineTo(x,y+h);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+
+/* ================ ABOUT-COURSE ANIMATIONS ================ */
+function animateProgress(){
+  const c=document.getElementById('progressCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const data=[{l:'Ch 1',v:8},{l:'Ch 2',v:12},{l:'Ch 3',v:10},{l:'Ch 4',v:8}];
+  const pad=34,gap=18,bw=(w-pad*2-gap*(data.length-1))/data.length,max=14;
+  const start=performance.now(),dur=1300;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);ctx.strokeStyle='rgba(148,163,196,.2)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
+    data.forEach((d,i)=>{
+      const bh=(d.v/max)*(h-pad*2)*e,x=pad+i*(bw+gap),y=h-pad-bh;
+      ctx.fillStyle=gradient(ctx,x,y,x,h-pad,'#22d3ee','#8b5cf6');
+      ctx.shadowColor='rgba(139,92,246,.5)';ctx.shadowBlur=14;
+      roundRect(ctx,x,y,bw,bh,8);ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle='#94a3c4';ctx.font='10px JetBrains Mono';ctx.textAlign='center';
+      ctx.fillText(d.l,x+bw/2,h-pad+14);
+      if(t>.9){ctx.fillStyle='#f1f5ff';ctx.font='bold 11px JetBrains Mono';ctx.fillText(d.v,x+bw/2,y-5);}
+    });
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+function animateDonut(){
+  const c=document.getElementById('donutCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const data=[{l:'Probability',v:30,c:'#8b5cf6'},{l:'Inference',v:25,c:'#22d3ee'},{l:'Descriptive',v:25,c:'#ec4899'},{l:'Distributions',v:20,c:'#fbbf24'}];
+  const cx=w/2,cy=h/2,R=Math.min(w,h)/2-20,r=R*0.6,total=100;
+  const start=performance.now(),dur=1400;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);let a=-Math.PI/2;
+    data.forEach(d=>{const sa=(d.v/total)*Math.PI*2*e;
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R,a,a+sa);ctx.closePath();
+      ctx.fillStyle=d.c;ctx.shadowColor=d.c;ctx.shadowBlur=15;ctx.fill();ctx.shadowBlur=0;
+      a+=sa;});
+    ctx.fillStyle='#08081a';ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#f1f5ff';ctx.font='bold 18px Playfair Display';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(Math.round(100*e)+'%',cx,cy-4);
+    ctx.fillStyle='#94a3c4';ctx.font='9px JetBrains Mono';ctx.fillText('COVERED',cx,cy+12);
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+function animateCurve(){
+  const c=document.getElementById('curveCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=30,N=40;
+  const pts=Array.from({length:N},(_,i)=>{const x=i/(N-1);return {x,y:1-Math.exp(-3*x)+0.04*Math.sin(i)};});
+  const start=performance.now(),dur=1600;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.15)';ctx.lineWidth=1;
+    for(let i=0;i<=4;i++){const y=pad+i*(h-pad*2)/4;ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(w-pad,y);ctx.stroke();}
+    const sx=v=>pad+v*(w-pad*2),sy=v=>h-pad-v*(h-pad*2);
+    const lim=Math.floor(N*e);
+    // fill area
+    ctx.beginPath();ctx.moveTo(sx(0),sy(0));
+    for(let i=0;i<=lim;i++)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));
+    ctx.lineTo(sx(pts[lim]?pts[lim].x:0),sy(0));ctx.closePath();
+    const g=ctx.createLinearGradient(0,pad,0,h-pad);
+    g.addColorStop(0,'rgba(139,92,246,.45)');g.addColorStop(1,'rgba(139,92,246,0)');
+    ctx.fillStyle=g;ctx.fill();
+    // line
+    ctx.beginPath();ctx.moveTo(sx(pts[0].x),sy(pts[0].y));
+    for(let i=1;i<=lim;i++)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));
+    ctx.strokeStyle='#22d3ee';ctx.lineWidth=2.5;ctx.shadowColor='#22d3ee';ctx.shadowBlur=12;ctx.stroke();ctx.shadowBlur=0;
+    // head dot
+    if(lim>0){const p=pts[lim];ctx.fillStyle='#ec4899';ctx.beginPath();ctx.arc(sx(p.x),sy(p.y),5,0,Math.PI*2);ctx.fill();}
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+
+/* ================ CH1 ================ */
+function animateCh1Bars(){
+  const c=document.getElementById('ch1Bars');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const data=[{l:'Nominal',v:25,c:'#8b5cf6'},{l:'Ordinal',v:20,c:'#22d3ee'},{l:'Interval',v:30,c:'#ec4899'},{l:'Ratio',v:25,c:'#fbbf24'}];
+  const pad=36,gap=18,bw=(w-pad*2-gap*(data.length-1))/data.length,max=35;
+  const start=performance.now(),dur=1400;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    data.forEach((d,i)=>{const bh=(d.v/max)*(h-pad*2)*e,x=pad+i*(bw+gap),y=h-pad-bh;
+      ctx.fillStyle=gradient(ctx,x,y,x,h-pad,d.c,'#13163a');
+      ctx.shadowColor=d.c;ctx.shadowBlur=14;
+      roundRect(ctx,x,y,bw,bh,8);ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle='#94a3c4';ctx.font='10px JetBrains Mono';ctx.textAlign='center';ctx.fillText(d.l,x+bw/2,h-pad+14);
+      if(t>.9){ctx.fillStyle='#f1f5ff';ctx.font='bold 11px JetBrains Mono';ctx.fillText(d.v+'%',x+bw/2,y-5);}});
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+function animateCh1Sample(){
+  const c=document.getElementById('ch1Sample');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const N=120,pop=Array.from({length:N},()=>({x:20+Math.random()*(w-40),y:20+Math.random()*(h-40),sel:false}));
+  const sampleIdx=[];while(sampleIdx.length<25){const i=Math.floor(Math.random()*N);if(!sampleIdx.includes(i))sampleIdx.push(i);}
+  const start=performance.now(),dur=2000;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    const showSel=Math.floor(sampleIdx.length*e);
+    pop.forEach((p,i)=>{
+      const isSel=sampleIdx.indexOf(i)>-1&&sampleIdx.indexOf(i)<showSel;
+      ctx.beginPath();ctx.arc(p.x,p.y,isSel?5:2.5,0,Math.PI*2);
+      if(isSel){ctx.fillStyle='#ec4899';ctx.shadowColor='#ec4899';ctx.shadowBlur=12;}
+      else{ctx.fillStyle='rgba(139,92,246,.45)';ctx.shadowBlur=0;}
+      ctx.fill();ctx.shadowBlur=0;
+    });
+    ctx.fillStyle='#94a3c4';ctx.font='10px JetBrains Mono';ctx.textAlign='left';
+    ctx.fillText('● Population: '+N,12,14);
+    ctx.fillStyle='#ec4899';ctx.fillText('● Sample drawn: '+showSel,12,28);
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+
+/* ================ CH2: HISTOGRAM, QQ, BOX ================ */
+const HIST=[3,7,14,22,30,28,20,12,6,2];
+function animateHist(){
+  const c=document.getElementById('histCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=30,gap=4,bw=(w-pad*2-gap*(HIST.length-1))/HIST.length,max=Math.max(...HIST);
+  const start=performance.now(),dur=1400;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.25)';ctx.beginPath();ctx.moveTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
+    HIST.forEach((v,i)=>{const bh=(v/max)*(h-pad*2)*e,x=pad+i*(bw+gap),y=h-pad-bh;
+      ctx.fillStyle=gradient(ctx,x,y,x,h-pad,'#22d3ee','#8b5cf6');
+      ctx.shadowColor='rgba(139,92,246,.5)';ctx.shadowBlur=12;
+      roundRect(ctx,x,y,bw,bh,4);ctx.fill();ctx.shadowBlur=0;
+      if(t>.95){ctx.fillStyle='#94a3c4';ctx.font='10px JetBrains Mono';ctx.textAlign='center';ctx.fillText(v,x+bw/2,y-4);}});
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+const QQ=Array.from({length:25},(_,i)=>{const p=(i+0.5)/25;
+  const tt=Math.sqrt(-2*Math.log(p<.5?p:1-p));
+  const z=(2.515517+0.802853*tt+0.010328*tt*tt)/(1+1.432788*tt+0.189269*tt*tt+0.001308*tt*tt*tt);
+  const theo=p<.5?-(tt-z):(tt-z);return {x:theo,y:theo+(Math.random()-.5)*.35+0.05*theo*Math.abs(theo)};});
+function animateQQ(){
+  const c=document.getElementById('qqCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=32,xs=QQ.map(p=>p.x),ys=QQ.map(p=>p.y);
+  const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const sx=v=>pad+(v-minX)/(maxX-minX)*(w-pad*2),sy=v=>h-pad-(v-minY)/(maxY-minY)*(h-pad*2);
+  const start=performance.now(),dur=1600;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.15)';
+    for(let i=0;i<=4;i++){const y=pad+i*(h-pad*2)/4;ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(w-pad,y);ctx.stroke();
+      const x=pad+i*(w-pad*2)/4;ctx.beginPath();ctx.moveTo(x,pad);ctx.lineTo(x,h-pad);ctx.stroke();}
+    ctx.strokeStyle='#fbbf24';ctx.lineWidth=2;ctx.setLineDash([5,5]);
+    const x0=sx(minX),y0=sy(minX),x1=sx(maxX),y1=sy(maxX);
+    ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x0+(x1-x0)*e,y0+(y1-y0)*e);ctx.stroke();ctx.setLineDash([]);
+    const sc=Math.floor(QQ.length*e);
+    for(let i=0;i<sc;i++){const p=QQ[i],px=sx(p.x),py=sy(p.y);
+      const g=ctx.createRadialGradient(px,py,0,px,py,8);g.addColorStop(0,'#ec4899');g.addColorStop(1,'rgba(236,72,153,0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(px,py,8,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#22d3ee';ctx.beginPath();ctx.arc(px,py,3,0,Math.PI*2);ctx.fill();}
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+const BOX=[{label:'Group A',min:12,q1:22,med:30,q3:38,max:48,outliers:[6,55]},
+  {label:'Group B',min:18,q1:28,med:34,q3:42,max:52,outliers:[60]},
+  {label:'Group C',min:10,q1:20,med:26,q3:36,max:44,outliers:[]}];
+function animateBox(){
+  const c=document.getElementById('boxCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=36,all=BOX.flatMap(b=>[b.min,b.max,...b.outliers]);
+  const lo=Math.min(...all)-2,hi=Math.max(...all)+2;
+  const sy=v=>h-pad-(v-lo)/(hi-lo)*(h-pad*2);
+  const slot=(w-pad*2)/BOX.length,bw=Math.min(60,slot*0.55);
+  const start=performance.now(),dur=1500;
+  const colors=[['#8b5cf6','#22d3ee'],['#ec4899','#fbbf24'],['#34d399','#22d3ee']];
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.15)';ctx.fillStyle='#94a3c4';ctx.font='9px JetBrains Mono';ctx.textAlign='right';
+    for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=sy(v);
+      ctx.beginPath();ctx.moveTo(pad,y);ctx.lineTo(w-pad,y);ctx.stroke();ctx.fillText(v.toFixed(0),pad-4,y+3);}
+    BOX.forEach((b,i)=>{const cx=pad+slot*i+slot/2,yMed=sy(b.med);
+      const yQ1=yMed+(sy(b.q1)-yMed)*e,yQ3=yMed+(sy(b.q3)-yMed)*e;
+      const yMin=yMed+(sy(b.min)-yMed)*e,yMax=yMed+(sy(b.max)-yMed)*e;
+      ctx.strokeStyle='#94a3c4';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(cx,yMin);ctx.lineTo(cx,yMax);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx-bw/3,yMin);ctx.lineTo(cx+bw/3,yMin);ctx.moveTo(cx-bw/3,yMax);ctx.lineTo(cx+bw/3,yMax);ctx.stroke();
+      ctx.fillStyle=gradient(ctx,cx-bw/2,yQ3,cx+bw/2,yQ1,colors[i][0],colors[i][1]);
+      ctx.shadowColor=colors[i][0];ctx.shadowBlur=14;
+      roundRect(ctx,cx-bw/2,yQ3,bw,yQ1-yQ3,6);ctx.fill();ctx.shadowBlur=0;
+      ctx.strokeStyle='#fff';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(cx-bw/2,yMed);ctx.lineTo(cx+bw/2,yMed);ctx.stroke();
+      if(t>.85){b.outliers.forEach(o=>{const oy=sy(o);ctx.fillStyle='#fbbf24';ctx.beginPath();ctx.arc(cx,oy,3.5,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='rgba(251,191,36,.4)';ctx.beginPath();ctx.arc(cx,oy,7,0,Math.PI*2);ctx.stroke();});}
+      ctx.fillStyle='#f1f5ff';ctx.font='600 11px DM Sans';ctx.textAlign='center';ctx.fillText(b.label,cx,h-12);});
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+
+/* ================ CH3 ================ */
+function animateCh3Normal(){
+  const c=document.getElementById('ch3Normal');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=30,N=80,pts=[];
+  for(let i=0;i<N;i++){const x=-3+6*i/(N-1);pts.push({x,y:Math.exp(-x*x/2)/Math.sqrt(2*Math.PI)});}
+  const sx=v=>pad+(v+3)/6*(w-pad*2),sy=v=>h-pad-v/0.4*(h-pad*2);
+  const start=performance.now(),dur=1700;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.2)';ctx.beginPath();ctx.moveTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
+    const lim=Math.floor(N*e);
+    // fill
+    ctx.beginPath();ctx.moveTo(sx(pts[0].x),h-pad);
+    for(let i=0;i<=lim;i++)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));
+    ctx.lineTo(sx(pts[lim].x),h-pad);ctx.closePath();
+    const g=ctx.createLinearGradient(0,pad,0,h-pad);
+    g.addColorStop(0,'rgba(236,72,153,.5)');g.addColorStop(1,'rgba(139,92,246,0)');
+    ctx.fillStyle=g;ctx.fill();
+    // line
+    ctx.beginPath();ctx.moveTo(sx(pts[0].x),sy(pts[0].y));
+    for(let i=1;i<=lim;i++)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));
+    ctx.strokeStyle='#22d3ee';ctx.lineWidth=2.5;ctx.shadowColor='#22d3ee';ctx.shadowBlur=14;ctx.stroke();ctx.shadowBlur=0;
+    // mean line
+    if(t>.7){ctx.strokeStyle='rgba(251,191,36,.7)';ctx.setLineDash([4,4]);
+      ctx.beginPath();ctx.moveTo(sx(0),pad);ctx.lineTo(sx(0),h-pad);ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle='#fbbf24';ctx.font='10px JetBrains Mono';ctx.textAlign='center';ctx.fillText('μ=0',sx(0),pad-4);}
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+function animateCh3Binom(){
+  const c=document.getElementById('ch3Binom');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  // n=12, p=0.5
+  const n=12,p=0.5;
+  function comb(n,k){let r=1;for(let i=1;i<=k;i++)r=r*(n-i+1)/i;return r;}
+  const data=Array.from({length:n+1},(_,k)=>comb(n,k)*Math.pow(p,k)*Math.pow(1-p,n-k));
+  const pad=32,gap=4,bw=(w-pad*2-gap*n)/(n+1),max=Math.max(...data);
+  const start=performance.now(),dur=1800;
+  function f(now){const t=Math.min(1,(now-start)/dur);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.2)';ctx.beginPath();ctx.moveTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
+    data.forEach((v,i)=>{
+      const local=Math.max(0,Math.min(1,(t*(n+1+2)-i)/2));const e=ease(local);
+      const bh=(v/max)*(h-pad*2)*e,x=pad+i*(bw+gap),y=h-pad-bh;
+      ctx.fillStyle=gradient(ctx,x,y,x,h-pad,'#fbbf24','#ec4899');
+      ctx.shadowColor='rgba(236,72,153,.5)';ctx.shadowBlur=12;
+      roundRect(ctx,x,y,bw,bh,4);ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle='#94a3c4';ctx.font='9px JetBrains Mono';ctx.textAlign='center';ctx.fillText(i,x+bw/2,h-pad+12);
+    });
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+
+/* ================ CH4 ================ */
+function animateCh4CI(){
+  const c=document.getElementById('ch4CI');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=30,mean=w/2,seWidth=(w-pad*2)*0.25;
+  const start=performance.now(),dur=1600;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    // axis
+    ctx.strokeStyle='rgba(148,163,196,.25)';ctx.beginPath();ctx.moveTo(pad,h/2);ctx.lineTo(w-pad,h/2);ctx.stroke();
+    // CI band expanding
+    const left=mean-seWidth*e,right=mean+seWidth*e;
+    const g=ctx.createLinearGradient(left,0,right,0);
+    g.addColorStop(0,'rgba(34,211,238,.35)');g.addColorStop(0.5,'rgba(139,92,246,.45)');g.addColorStop(1,'rgba(236,72,153,.35)');
+    ctx.fillStyle=g;ctx.fillRect(left,h/2-30,right-left,60);
+    // bracket
+    ctx.strokeStyle='#22d3ee';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(left,h/2-30);ctx.lineTo(left,h/2+30);ctx.moveTo(right,h/2-30);ctx.lineTo(right,h/2+30);ctx.stroke();
+    // mean point
+    ctx.fillStyle='#ec4899';ctx.shadowColor='#ec4899';ctx.shadowBlur=15;
+    ctx.beginPath();ctx.arc(mean,h/2,6,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    ctx.fillStyle='#f1f5ff';ctx.font='12px JetBrains Mono';ctx.textAlign='center';
+    ctx.fillText('x̄',mean,h/2-12);
+    if(t>.9){ctx.fillStyle='#22d3ee';ctx.font='11px JetBrains Mono';ctx.fillText('95% Confidence Interval',mean,h/2+50);}
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+function animateCh4HT(){
+  const c=document.getElementById('ch4HT');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=30,N=120,pts=[];
+  for(let i=0;i<N;i++){const x=-4+8*i/(N-1);pts.push({x,y:Math.exp(-x*x/2)/Math.sqrt(2*Math.PI)});}
+  const sx=v=>pad+(v+4)/8*(w-pad*2),sy=v=>h-pad-v/0.4*(h-pad*2);
+  const zCrit=1.96;
+  const start=performance.now(),dur=1800;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.2)';ctx.beginPath();ctx.moveTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
+    // full curve
+    ctx.beginPath();ctx.moveTo(sx(pts[0].x),sy(pts[0].y));
+    for(let i=1;i<N;i++)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));
+    ctx.strokeStyle='#8b5cf6';ctx.lineWidth=2;ctx.stroke();
+    // rejection regions fill
+    const eFill=ease(Math.min(1,t*1.2));
+    function fillRegion(from,to,color){
+      ctx.beginPath();ctx.moveTo(sx(from),h-pad);
+      for(let i=0;i<N;i++){if(pts[i].x>=from&&pts[i].x<=to)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));}
+      ctx.lineTo(sx(to),h-pad);ctx.closePath();ctx.fillStyle=color;ctx.fill();
+    }
+    ctx.save();ctx.globalAlpha=eFill;
+    fillRegion(-4,-zCrit,'rgba(236,72,153,.5)');
+    fillRegion(zCrit,4,'rgba(236,72,153,.5)');
+    ctx.restore();
+    // critical lines
+    if(t>.6){ctx.strokeStyle='#fbbf24';ctx.setLineDash([4,4]);
+      ctx.beginPath();ctx.moveTo(sx(-zCrit),pad);ctx.lineTo(sx(-zCrit),h-pad);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(sx(zCrit),pad);ctx.lineTo(sx(zCrit),h-pad);ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle='#fbbf24';ctx.font='10px JetBrains Mono';ctx.textAlign='center';
+      ctx.fillText('-1.96',sx(-zCrit),pad-4);ctx.fillText('+1.96',sx(zCrit),pad-4);}
+    // test stat
+    if(t>.9){const z=2.4;ctx.fillStyle='#22d3ee';ctx.shadowColor='#22d3ee';ctx.shadowBlur=12;
+      ctx.beginPath();ctx.arc(sx(z),h-pad,6,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+      ctx.fillStyle='#22d3ee';ctx.font='10px JetBrains Mono';ctx.fillText('z=2.4',sx(z),h-pad+14);}
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+
+
+/* ===== Example animations ===== */
+function animateExNormal(){
+  const c=document.getElementById('exNormal');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=28,N=120,pts=[];
+  for(let i=0;i<N;i++){const x=-4+8*i/(N-1);pts.push({x,y:Math.exp(-x*x/2)/Math.sqrt(2*Math.PI)});}
+  const sx=v=>pad+(v+4)/8*(w-pad*2),sy=v=>h-pad-v/0.42*(h-pad*2);
+  const start=performance.now(),dur=1500;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.2)';ctx.beginPath();ctx.moveTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
+    const lim=Math.floor(N*e);
+    // fill area X>2 (z>2) shaded
+    ctx.beginPath();ctx.moveTo(sx(2),h-pad);
+    for(let i=0;i<N;i++){if(pts[i].x>=2&&i<=lim)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));}
+    ctx.lineTo(sx(4),h-pad);ctx.closePath();
+    ctx.fillStyle='rgba(236,72,153,.45)';ctx.fill();
+    // line
+    ctx.beginPath();ctx.moveTo(sx(pts[0].x),sy(pts[0].y));
+    for(let i=1;i<=lim;i++)ctx.lineTo(sx(pts[i].x),sy(pts[i].y));
+    ctx.strokeStyle='#22d3ee';ctx.lineWidth=2.5;ctx.shadowColor='#22d3ee';ctx.shadowBlur=12;ctx.stroke();ctx.shadowBlur=0;
+    if(t>.6){ctx.strokeStyle='#fbbf24';ctx.setLineDash([4,4]);
+      ctx.beginPath();ctx.moveTo(sx(2),pad);ctx.lineTo(sx(2),h-pad);ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle='#fbbf24';ctx.font='10px JetBrains Mono';ctx.textAlign='center';ctx.fillText('z=2',sx(2),pad-4);
+      ctx.fillStyle='#ec4899';ctx.fillText('P≈0.0228',sx(3.1),sy(0.05));}
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+function animateExCI(){
+  const c=document.getElementById('exCI');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=30,minV=990,maxV=1110;
+  const sx=v=>pad+(v-minV)/(maxV-minV)*(w-pad*2);
+  const start=performance.now(),dur=1500;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.25)';ctx.beginPath();ctx.moveTo(pad,h/2+30);ctx.lineTo(w-pad,h/2+30);ctx.stroke();
+    // ticks
+    ctx.fillStyle='#94a3c4';ctx.font='9px JetBrains Mono';ctx.textAlign='center';
+    [1000,1025,1050,1075,1100].forEach(v=>{ctx.fillText(v,sx(v),h/2+44);
+      ctx.beginPath();ctx.moveTo(sx(v),h/2+28);ctx.lineTo(sx(v),h/2+32);ctx.strokeStyle='#94a3c4';ctx.stroke();});
+    // CI band
+    const left=sx(1050)-(sx(1050)-sx(1010.8))*e,right=sx(1050)+(sx(1089.2)-sx(1050))*e;
+    const g=ctx.createLinearGradient(left,0,right,0);
+    g.addColorStop(0,'rgba(34,211,238,.4)');g.addColorStop(0.5,'rgba(139,92,246,.5)');g.addColorStop(1,'rgba(236,72,153,.4)');
+    ctx.fillStyle=g;ctx.fillRect(left,h/2-18,right-left,36);
+    ctx.strokeStyle='#22d3ee';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(left,h/2-18);ctx.lineTo(left,h/2+18);ctx.moveTo(right,h/2-18);ctx.lineTo(right,h/2+18);ctx.stroke();
+    // mean
+    ctx.fillStyle='#ec4899';ctx.shadowColor='#ec4899';ctx.shadowBlur=12;
+    ctx.beginPath();ctx.arc(sx(1050),h/2,5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    ctx.fillStyle='#f1f5ff';ctx.font='11px JetBrains Mono';ctx.fillText('x̄=1050',sx(1050),h/2-10);
+    // null line
+    ctx.strokeStyle='#fbbf24';ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(sx(1000),h/2-25);ctx.lineTo(sx(1000),h/2+25);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#fbbf24';ctx.fillText('μ₀=1000',sx(1000),h/2-30);
+    if(t>.9){ctx.fillStyle='#22d3ee';ctx.font='10px JetBrains Mono';
+      ctx.fillText('95 % CI: (1010.8 , 1089.2)',w/2,16);}
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+
+/* ============== SKEWNESS ANIMATION ============== */
+function animateSkew(){
+  const c=document.getElementById('skewCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=28,N=120;
+  // three curves: left-skewed, symmetric, right-skewed
+  function pdf(x,skew){
+    const base=Math.exp(-x*x/2)/Math.sqrt(2*Math.PI);
+    // skew-normal-ish via 2*phi*Phi
+    const Phi=0.5*(1+Math.tanh(skew*x*0.9));
+    return 2*base*Phi;
+  }
+  const sets=[
+    {skew:-3,color:'#22d3ee',label:'Left-skewed'},
+    {skew:0, color:'#fbbf24',label:'Symmetric'},
+    {skew:3, color:'#ec4899',label:'Right-skewed'}
+  ];
+  const xs=Array.from({length:N},(_,i)=>-4+8*i/(N-1));
+  const sx=v=>pad+(v+4)/8*(w-pad*2);
+  const maxY=0.6;
+  const sy=v=>h-pad-v/maxY*(h-pad*2);
+  const start=performance.now(),dur=1700;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(148,163,196,.18)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(pad,h-pad);ctx.lineTo(w-pad,h-pad);ctx.stroke();
+    sets.forEach((s,si)=>{
+      const lim=Math.floor(N*e);
+      // fill
+      ctx.beginPath();ctx.moveTo(sx(xs[0]),h-pad);
+      for(let i=0;i<=lim;i++)ctx.lineTo(sx(xs[i]),sy(pdf(xs[i],s.skew)));
+      ctx.lineTo(sx(xs[lim]),h-pad);ctx.closePath();
+      ctx.fillStyle=s.color+'22';ctx.fill();
+      // line
+      ctx.beginPath();ctx.moveTo(sx(xs[0]),sy(pdf(xs[0],s.skew)));
+      for(let i=1;i<=lim;i++)ctx.lineTo(sx(xs[i]),sy(pdf(xs[i],s.skew)));
+      ctx.strokeStyle=s.color;ctx.lineWidth=2.2;ctx.shadowColor=s.color;ctx.shadowBlur=10;ctx.stroke();ctx.shadowBlur=0;
+      if(t>.9){ctx.fillStyle=s.color;ctx.font='10px JetBrains Mono';ctx.textAlign='left';
+        ctx.fillText('● '+s.label, 14, 16+si*14);}
+    });
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+
+/* ============== QUARTILE ANIMATION ============== */
+function animateQuartile(){
+  const c=document.getElementById('quartileCanvas');if(!c)return;
+  const {ctx,w,h}=fitCanvas(c);
+  const pad=34;
+  const data=Array.from({length:50},()=>Math.random()*100).sort((a,b)=>a-b);
+  const lo=0,hi=100;
+  const sx=v=>pad+(v-lo)/(hi-lo)*(w-pad*2);
+  const Q1=data[Math.floor(data.length*0.25)];
+  const Q2=data[Math.floor(data.length*0.5)];
+  const Q3=data[Math.floor(data.length*0.75)];
+  const colors=['#22d3ee','#8b5cf6','#ec4899','#fbbf24'];
+  const start=performance.now(),dur=1800;
+  function f(now){const t=Math.min(1,(now-start)/dur),e=ease(t);
+    ctx.clearRect(0,0,w,h);
+    // axis line
+    ctx.strokeStyle='rgba(148,163,196,.3)';ctx.beginPath();ctx.moveTo(pad,h/2+30);ctx.lineTo(w-pad,h/2+30);ctx.stroke();
+    // 4 quartile bands
+    const bounds=[lo,Q1,Q2,Q3,hi];
+    for(let i=0;i<4;i++){
+      const x0=sx(bounds[i]),x1=sx(bounds[i]+(bounds[i+1]-bounds[i])*e);
+      ctx.fillStyle=colors[i]+'33';
+      ctx.fillRect(x0,h/2-20,x1-x0,40);
+      ctx.strokeStyle=colors[i];ctx.lineWidth=1.5;
+      ctx.strokeRect(x0,h/2-20,x1-x0,40);
+    }
+    // data dots
+    const showN=Math.floor(data.length*e);
+    for(let i=0;i<showN;i++){
+      const v=data[i];
+      ctx.fillStyle='rgba(241,245,255,.7)';
+      ctx.beginPath();ctx.arc(sx(v),h/2,2.5,0,Math.PI*2);ctx.fill();
+    }
+    // Q labels
+    if(t>.5){
+      ctx.fillStyle='#f1f5ff';ctx.font='bold 10px JetBrains Mono';ctx.textAlign='center';
+      [['Q1',Q1],['Q2',Q2],['Q3',Q3]].forEach(([l,v])=>{
+        ctx.fillStyle='#fbbf24';
+        ctx.beginPath();ctx.moveTo(sx(v),h/2-26);ctx.lineTo(sx(v),h/2+26);ctx.stroke();
+        ctx.fillText(l+'='+v.toFixed(1),sx(v),h/2-32);
+      });
+    }
+    // band labels
+    if(t>.85){
+      ctx.fillStyle='#94a3c4';ctx.font='9px JetBrains Mono';ctx.textAlign='center';
+      ['25%','25%','25%','25%'].forEach((l,i)=>{
+        const cx=(sx(bounds[i])+sx(bounds[i+1]))/2;
+        ctx.fillText(l,cx,h/2+50);
+      });
+      ctx.fillStyle='#ec4899';ctx.font='bold 10px JetBrains Mono';
+      ctx.fillText('IQR = Q3 − Q1 = '+(Q3-Q1).toFixed(1),(sx(Q1)+sx(Q3))/2,h/2-46);
+    }
+    if(t<1)requestAnimationFrame(f);
+  }requestAnimationFrame(f);
+}
+</script>
+</body>
+</html>
